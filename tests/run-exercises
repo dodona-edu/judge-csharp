@@ -2,6 +2,7 @@
 # Usage: tests/run-exercises <image> [name filter]
 # Runs this judge in the image the way Dodona's submission runner does, once per
 # exercises/<exercise>/submissions/<case>.cs, and diffs the result with expected/<case>.json.
+# In an image with dotnet a case compares with expected/<case>.dotnet.json instead, when that file exists.
 # UPDATE_EXPECTED=1 rewrites the expected files; DOCKER_RUN_ARGS adds `docker run` arguments, e.g.
 # DOCKER_RUN_ARGS="--platform linux/amd64 -e MONO_ENV_OPTIONS=--interpreter" on an arm64 host.
 set -euo pipefail
@@ -63,6 +64,7 @@ run_case() { # $1 = exercise dir, $2 = case name, $3 = file to write the result 
     | docker_run --rm -i \
       ${extra_args[@]+"${extra_args[@]}"} \
       --memory 256000000 \
+      --memory-swap 256000000 \
       --pids-limit 256 \
       --network none \
       -v "$tmp:$root" \
@@ -86,6 +88,17 @@ run_case() { # $1 = exercise dir, $2 = case name, $3 = file to write the result 
   rm -rf "$tmp" 2> /dev/null || true
 }
 
+# The mono image has no pkill for main.sh's exit trap; images with procps print nothing there.
+without_pkill_error() {
+  jq -S '.stderr |= sub("/main.sh: [0-9]+: /main.sh: pkill: not found\n"; "")' "$1"
+}
+
+runtime=mono
+if docker_run --rm ${extra_args[@]+"${extra_args[@]}"} "$image" sh -c 'command -v dotnet' > /dev/null; then
+  runtime=dotnet
+fi
+echo "runtime: $runtime"
+
 passed=0
 failed=0
 updated=0
@@ -97,6 +110,8 @@ for submission in "$here"/exercises/*/submissions/*.cs; do
   [[ "$name" == *"$filter"* ]] || continue
 
   expected="$exercise/expected/$case.json"
+  variant="$exercise/expected/$case.$runtime.json"
+  [ -f "$variant" ] && expected="$variant"
   actual=$(mktemp)
   run_case "$exercise" "$case" "$actual"
   if [ "${UPDATE_EXPECTED:-}" = 1 ]; then
@@ -107,7 +122,8 @@ for submission in "$here"/exercises/*/submissions/*.cs; do
   elif [ ! -f "$expected" ]; then
     echo "FAIL $name: no expected output, run with UPDATE_EXPECTED=1 to create it"
     failed=$((failed + 1))
-  elif diff -u --label "${expected#"$here/"}" --label actual "$expected" "$actual"; then
+  elif diff -u --label "${expected#"$here/"}" --label actual \
+    <(without_pkill_error "$expected") <(without_pkill_error "$actual"); then
     echo "ok   $name"
     passed=$((passed + 1))
   else

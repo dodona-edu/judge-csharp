@@ -1,0 +1,23 @@
+{
+  "exit_code": 255,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "SomTests"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">BeideNegatief</span>",
+        "format": "html"
+      }
+    }
+  ],
+  "stderr": "\nUnhandled Exception:\nNUnit.Engine.NUnitEngineException: Remote test agent exited with non-zero exit code 137\n[ERROR] FATAL UNHANDLED EXCEPTION: NUnit.Engine.NUnitEngineException: Remote test agent exited with non-zero exit code 137\n/main.sh: 1: /main.sh: pkill: not found\n"
+}
