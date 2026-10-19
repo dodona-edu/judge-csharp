@@ -1,0 +1,73 @@
+{
+  "exit_code": 0,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "TekstTests"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">LegeTekst</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": ""
+    },
+    {
+      "command": "close-test",
+      "generated": "x",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">SpecialeTekens</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "a<b>&\\u0001"
+    },
+    {
+      "command": "close-test",
+      "generated": "a<b>&\\u0001",
+      "status": {
+        "enum": "correct"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "close-tab"
+    },
+    {
+      "command": "close-judgement"
+    }
+  ],
+  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+}

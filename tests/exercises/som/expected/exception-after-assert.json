@@ -1,0 +1,75 @@
+{
+  "exit_code": 1,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "SomTests"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">BeideNegatief</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "append-message",
+      "message": {
+        "description": "System.ArgumentException : b mag niet negatief zijn",
+        "format": "plain"
+      }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "runtime error"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">NulEnNegatief</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "0"
+    },
+    {
+      "command": "close-test",
+      "generated": "0",
+      "status": {
+        "enum": "correct"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": ""
+    },
+    {
+      "command": "append-message",
+      "message": {
+        "description": "System.ArgumentException : b mag niet negatief zijn",
+        "format": "plain"
+      }
+    }
+  ],
+  "stderr": "\nUnhandled Exception:\nSystem.Collections.Generic.KeyNotFoundException: The given key 'Error' was not present in the dictionary.\n[ERROR] FATAL UNHANDLED EXCEPTION: System.Collections.Generic.KeyNotFoundException: The given key 'Error' was not present in the dictionary.\n/main.sh: 1: /main.sh: pkill: not found\n"
+}

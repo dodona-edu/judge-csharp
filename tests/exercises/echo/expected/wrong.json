@@ -1,0 +1,73 @@
+{
+  "exit_code": 0,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "Tests1"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">Hello world!</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "Hello world!"
+    },
+    {
+      "command": "close-test",
+      "generated": "HELLO WORLD!",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">Hello Dodona!</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "Hello Dodona!"
+    },
+    {
+      "command": "close-test",
+      "generated": "HELLO DODONA!",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "close-tab"
+    },
+    {
+      "command": "close-judgement"
+    }
+  ],
+  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+}
