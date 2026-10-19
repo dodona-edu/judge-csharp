@@ -25,5 +25,5 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Compare a rebuild of src/ with bin/
+      - name: Compare a rebuild of src/ with bin/ and bin-dotnet/
         run: devel/check-bin.sh

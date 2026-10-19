@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Usage: devel/check-bin.sh
-# Rebuilds src/judge-csharp with devel/build.sh and compares every file of the build with the same file in bin/.
+# Rebuilds both judges with devel/build.sh and compares every file of the build with the same file in bin/ and bin-dotnet/.
 set -euo pipefail
 
 allowed_to_differ=()
@@ -20,24 +20,26 @@ is_allowed() {
 }
 
 status=0
-for file in "$build"/*; do
-  name=$(basename "$file")
-  if [ ! -f "$root/bin/$name" ]; then
-    echo "DIFFERS $name (missing in bin/)"
-    status=1
-  elif cmp -s "$file" "$root/bin/$name"; then
-    echo "same $name"
-  elif is_allowed "$name"; then
-    echo "differs (allowed) $name"
-  else
-    echo "DIFFERS $name (the rebuild is not byte-identical to bin/$name)"
-    status=1
-  fi
-done
+for dir in bin bin-dotnet; do
+  for file in "$build/$dir"/*; do
+    name="$dir/$(basename "$file")"
+    if [ ! -f "$root/$name" ]; then
+      echo "DIFFERS $name (missing in $dir/)"
+      status=1
+    elif cmp -s "$file" "$root/$name"; then
+      echo "same $name"
+    elif is_allowed "$name"; then
+      echo "differs (allowed) $name"
+    else
+      echo "DIFFERS $name (the rebuild is not byte-identical to $name)"
+      status=1
+    fi
+  done
 
-for file in "$root"/bin/* "$root"/bin/.[!.]*; do
-  [ -e "$file" ] || continue
-  [ -e "$build/$(basename "$file")" ] || echo "only in bin/ $(basename "$file")"
+  for file in "$root/$dir"/* "$root/$dir"/.[!.]*; do
+    [ -e "$file" ] || continue
+    [ -e "$build/$dir/$(basename "$file")" ] || echo "only in $dir/ $(basename "$file")"
+  done
 done
 
 exit "$status"

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>judge-csharp</AssemblyName>
+    <RootNamespace>judge_csharp</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseAppHost>false</UseAppHost>
+    <JudgeSource>../judge-csharp</JudgeSource>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(JudgeSource)/EventHandling/OutputHandler.cs" Link="judge-csharp\EventHandling\OutputHandler.cs" />
+    <Compile Include="$(JudgeSource)/Json/*.cs" Link="judge-csharp\Json\%(Filename)%(Extension)" />
+    <Compile Include="$(JudgeSource)/Feedback/*.cs" Link="judge-csharp\Feedback\%(Filename)%(Extension)" />
+    <Compile Include="$(JudgeSource)/Util/*.cs" Link="judge-csharp\Util\%(Filename)%(Extension)" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+</Project>
