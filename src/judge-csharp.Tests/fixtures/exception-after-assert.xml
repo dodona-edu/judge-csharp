@@ -1,0 +1,5 @@
+<events>
+<start-test id="0-1001" parentId="0-1000" name="NulEnNegatief" fullname="SomTests.NulEnNegatief" type="TestMethod" />
+<test-case id="0-1001" name="NulEnNegatief" fullname="SomTests.NulEnNegatief" methodname="NulEnNegatief" classname="SomTests" runstate="Runnable" seed="0" result="Failed" label="Error" start-time="2000-01-01 00:00:00Z" end-time="2000-01-01 00:00:00Z" duration="0.000000" asserts="1" parentId="0-1000"><failure><message><![CDATA[System.ArgumentException : b mag niet negatief zijn  1) 
+]]></message></failure><assertions><assertion result="Passed"><actual><![CDATA[0]]></actual><expected><![CDATA[0]]></expected></assertion><assertion result="Error"><message><![CDATA[System.ArgumentException : b mag niet negatief zijn]]></message></assertion></assertions></test-case>
+</events>

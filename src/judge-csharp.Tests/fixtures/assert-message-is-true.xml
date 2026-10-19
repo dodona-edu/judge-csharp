@@ -1,0 +1,4 @@
+<events>
+<start-test id="0-1001" parentId="0-1000" name="IsTrueZonderBericht" fullname="Tests.IsTrueZonderBericht" type="TestMethod" />
+<test-case id="0-1001" name="IsTrueZonderBericht" fullname="Tests.IsTrueZonderBericht" methodname="IsTrueZonderBericht" classname="Tests" runstate="Runnable" seed="0" result="Failed" start-time="2000-01-01 00:00:00Z" end-time="2000-01-01 00:00:00Z" duration="0.000000" asserts="1" parentId="0-1000"><failure></failure><assertions><assertion result="Failed"></assertion></assertions></test-case>
+</events>

@@ -1,0 +1,11 @@
+<events>
+<start-run count='0'/>
+<start-suite id="0-1002" parentId="" name="testproject.dll" fullname="testproject.dll" type="Assembly" />
+<start-suite id="0-1000" parentId="0-1002" name="Tests" fullname="Tests" type="TestFixture" />
+<start-test id="0-1001" parentId="0-1000" name="Genegeerd" fullname="Tests.Genegeerd" type="TestMethod" />
+<test-case id="0-1001" name="Genegeerd" fullname="Tests.Genegeerd" methodname="Genegeerd" classname="Tests" runstate="Runnable" seed="0" result="Skipped" label="Ignored" start-time="2000-01-01 00:00:00Z" end-time="2000-01-01 00:00:00Z" duration="0.000000" asserts="0" parentId="0-1000" />
+<test-suite type="TestFixture" id="0-1000" name="Tests" fullname="Tests" classname="Tests" runstate="Runnable" testcasecount="1" result="Skipped" label="Ignored" site="Child" start-time="2000-01-01 00:00:00Z" end-time="2000-01-01 00:00:00Z" duration="0.000000" total="1" passed="0" failed="0" warnings="0" inconclusive="0" skipped="1" asserts="0" parentId="0-1002" />
+<test-suite type="Assembly" id="0-1002" name="testproject.dll" fullname="testproject.dll" runstate="Runnable" testcasecount="1" result="Skipped" label="Ignored" site="Child" start-time="2000-01-01 00:00:00Z" end-time="2000-01-01 00:00:00Z" duration="0.000000" total="1" passed="0" failed="0" warnings="0" inconclusive="0" skipped="1" asserts="0" parentId=""></test-suite>
+<test-suite type="Assembly" id="0-1002" name="testproject.dll" fullname="testproject.dll" runstate="Runnable" testcasecount="1" result="Skipped" label="Ignored" site="Child" start-time="2000-01-01 00:00:00Z" end-time="2000-01-01 00:00:00Z" duration="0.000000" total="1" passed="0" failed="0" warnings="0" inconclusive="0" skipped="1" asserts="0" />
+<test-run id="2" name="testproject.dll" fullname="testproject.dll" testcasecount="1" result="Skipped" label="Ignored" total="1" passed="0" failed="0" inconclusive="0" skipped="1" asserts="0" engine-version="3.10.0.0" clr-version="4.0.30319.42000" start-time="2000-01-01 00:00:00Z" end-time="2000-01-01 00:00:00Z" duration="0.000000" />
+</events>
