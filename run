@@ -17,7 +17,8 @@ cat "$(jshon -e 'source' -u < "$config")" > "solution.cs"
 
 # Compiling solution with tests
 compileresult="$(mktemp)"
-csc -reference:$judge/lib/nunit.framework.dll -out:$workdir/testproject.dll -target:library *.cs > $compileresult
+# without a UTF-8 locale csc prints non-ASCII characters in its messages as "?"
+LANG=C.UTF-8 csc -reference:$judge/lib/nunit.framework.dll -out:$workdir/testproject.dll -target:library *.cs > $compileresult
 
 if [ $? -ne 0 ]; then
     jshon -s "start-judgement"  -i "command" <<< "{}"

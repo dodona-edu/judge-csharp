@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.IO;
+using System.Text;
 using System.Threading;
 using judge_csharp.EventHandling;
 using NUnit.Engine;
@@ -29,6 +30,9 @@ namespace judge_csharp
             /* run tests in new thread */
             new Thread(RunTests).Start();
 
+
+            /* mono's default stdout encoding is ASCII in the image, and Dodona reads UTF-8 */
+            Console.OutputEncoding = new UTF8Encoding(false);
 
             /* for some reason stdout gets changed while running NUnit tests */
             TextWriter outputChannel = Console.Out;
