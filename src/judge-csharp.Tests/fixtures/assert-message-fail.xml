@@ -1,0 +1,4 @@
+<events>
+<start-test id="0-1001" parentId="0-1000" name="FailMetBericht" fullname="Tests.FailMetBericht" type="TestMethod" />
+<test-case id="0-1001" name="FailMetBericht" fullname="Tests.FailMetBericht" methodname="FailMetBericht" classname="Tests" runstate="Runnable" seed="0" result="Failed" start-time="2000-01-01 00:00:00Z" end-time="2000-01-01 00:00:00Z" duration="0.000000" asserts="0" parentId="0-1000"><failure><message><![CDATA[niet gelukt]]></message></failure><assertions><assertion result="Failed"><message><![CDATA[niet gelukt]]></message></assertion></assertions></test-case>
+</events>

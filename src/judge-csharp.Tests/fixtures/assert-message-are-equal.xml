@@ -1,0 +1,4 @@
+<events>
+<start-test id="0-1001" parentId="0-1000" name="AreEqualMetBericht" fullname="Tests.AreEqualMetBericht" type="TestMethod" />
+<test-case id="0-1001" name="AreEqualMetBericht" fullname="Tests.AreEqualMetBericht" methodname="AreEqualMetBericht" classname="Tests" runstate="Runnable" seed="0" result="Failed" start-time="2000-01-01 00:00:00Z" end-time="2000-01-01 00:00:00Z" duration="0.000000" asserts="1" parentId="0-1000"><failure><message><![CDATA[de som klopt niet]]></message></failure><assertions><assertion result="Failed"><actual><![CDATA[2]]></actual><expected><![CDATA[3]]></expected><message><![CDATA[de som klopt niet]]></message></assertion></assertions></test-case>
+</events>

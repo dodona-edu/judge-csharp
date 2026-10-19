@@ -1,0 +1,14 @@
+<events>
+<start-run count='0'/>
+<start-suite id="0-1002" parentId="" name="testproject.dll" fullname="testproject.dll" type="Assembly" />
+<start-suite id="0-1000" parentId="0-1002" name="Tests" fullname="Tests" type="TestFixture" />
+<start-test id="0-1001" parentId="0-1000" name="Waarschuwing" fullname="Tests.Waarschuwing" type="TestMethod" />
+<test-case id="0-1001" name="Waarschuwing" fullname="Tests.Waarschuwing" methodname="Waarschuwing" classname="Tests" runstate="Runnable" seed="0" result="Warning" start-time="2000-01-01 00:00:00Z" end-time="2000-01-01 00:00:00Z" duration="0.000000" asserts="1" parentId="0-1000"><reason><message><![CDATA[Multiple failures or warnings in test:
+  1) opgepast
+  2) 
+]]></message></reason><assertions><assertion result="Warning"><message><![CDATA[opgepast]]></message></assertion><assertion result="Passed"><actual><![CDATA[2]]></actual><expected><![CDATA[2]]></expected></assertion></assertions></test-case>
+<test-suite type="TestFixture" id="0-1000" name="Tests" fullname="Tests" classname="Tests" runstate="Runnable" testcasecount="1" result="Warning" site="Child" start-time="2000-01-01 00:00:00Z" end-time="2000-01-01 00:00:00Z" duration="0.000000" total="0" passed="0" failed="0" warnings="1" inconclusive="0" skipped="0" asserts="1" parentId="0-1002"><reason><message><![CDATA[One or more child tests had warnings]]></message></reason></test-suite>
+<test-suite type="Assembly" id="0-1002" name="testproject.dll" fullname="testproject.dll" runstate="Runnable" testcasecount="1" result="Warning" site="Child" start-time="2000-01-01 00:00:00Z" end-time="2000-01-01 00:00:00Z" duration="0.000000" total="0" passed="0" failed="0" warnings="1" inconclusive="0" skipped="0" asserts="1" parentId=""><reason><message><![CDATA[One or more child tests had warnings]]></message></reason></test-suite>
+<test-suite type="Assembly" id="0-1002" name="testproject.dll" fullname="testproject.dll" runstate="Runnable" testcasecount="1" result="Warning" site="Child" start-time="2000-01-01 00:00:00Z" end-time="2000-01-01 00:00:00Z" duration="0.000000" total="0" passed="0" failed="0" warnings="1" inconclusive="0" skipped="0" asserts="1" />
+<test-run id="2" name="testproject.dll" fullname="testproject.dll" testcasecount="1" result="Warning" total="0" passed="0" failed="0" inconclusive="0" skipped="0" asserts="1" engine-version="3.10.0.0" clr-version="4.0.30319.42000" start-time="2000-01-01 00:00:00Z" end-time="2000-01-01 00:00:00Z" duration="0.000000" />
+</events>

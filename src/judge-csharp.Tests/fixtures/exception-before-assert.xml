@@ -1,0 +1,4 @@
+<events>
+<start-test id="0-1001" parentId="0-1000" name="PositieveGetallen" fullname="SomTests.PositieveGetallen" type="TestMethod" />
+<test-case id="0-1001" name="PositieveGetallen" fullname="SomTests.PositieveGetallen" methodname="PositieveGetallen" classname="SomTests" runstate="Runnable" seed="0" result="Failed" label="Error" start-time="2000-01-01 00:00:00Z" end-time="2000-01-01 00:00:00Z" duration="0.000000" asserts="0" parentId="0-1000"><failure><message><![CDATA[System.InvalidOperationException : kan niet optellen]]></message></failure></test-case>
+</events>

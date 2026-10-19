@@ -1,0 +1,7 @@
+<events>
+<start-test id="0-1001" parentId="0-1000" name="NulEnNegatief" fullname="SomTests.NulEnNegatief" type="TestMethod" />
+<test-case id="0-1001" name="NulEnNegatief" fullname="SomTests.NulEnNegatief" methodname="NulEnNegatief" classname="SomTests" runstate="Runnable" seed="0" result="Failed" start-time="2000-01-01 00:00:00Z" end-time="2000-01-01 00:00:00Z" duration="0.000000" asserts="2" parentId="0-1000"><failure><message><![CDATA[Multiple failures or warnings in test:
+  1) 
+  2) 
+]]></message></failure><assertions><assertion result="Passed"><actual><![CDATA[0]]></actual><expected><![CDATA[0]]></expected></assertion><assertion result="Failed"><actual><![CDATA[5]]></actual><expected><![CDATA[-1]]></expected></assertion></assertions></test-case>
+</events>
