@@ -1,0 +1,23 @@
+{
+  "exit_code": 0,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "append-message",
+      "message": {
+        "description": "<pre>solution.cs(9,46): error CS1002: ; expected</pre>",
+        "format": "html"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-judgement",
+      "status": {
+        "enum": "compilation error"
+      }
+    }
+  ],
+  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+}

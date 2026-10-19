@@ -1,0 +1,23 @@
+{
+  "exit_code": 1,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "Tests"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">ZonderAsserts</span>",
+        "format": "html"
+      }
+    }
+  ],
+  "stderr": "\nUnhandled Exception:\nSystem.NullReferenceException: Object reference not set to an instance of an object\n[ERROR] FATAL UNHANDLED EXCEPTION: System.NullReferenceException: Object reference not set to an instance of an object\n/main.sh: 1: /main.sh: pkill: not found\n"
+}

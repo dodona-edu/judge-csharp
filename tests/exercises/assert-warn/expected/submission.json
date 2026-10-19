@@ -1,0 +1,34 @@
+{
+  "exit_code": 1,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "Tests"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">Waarschuwing</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": ""
+    },
+    {
+      "command": "append-message",
+      "message": {
+        "description": "opgepast",
+        "format": "plain"
+      }
+    }
+  ],
+  "stderr": "\nUnhandled Exception:\nSystem.Collections.Generic.KeyNotFoundException: The given key 'Warning' was not present in the dictionary.\n[ERROR] FATAL UNHANDLED EXCEPTION: System.Collections.Generic.KeyNotFoundException: The given key 'Warning' was not present in the dictionary.\n/main.sh: 1: /main.sh: pkill: not found\n"
+}

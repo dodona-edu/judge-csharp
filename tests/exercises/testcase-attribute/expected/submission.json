@@ -1,0 +1,73 @@
+{
+  "exit_code": 0,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "Tests"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">Opvolger(1,2)</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "2"
+    },
+    {
+      "command": "close-test",
+      "generated": "2",
+      "status": {
+        "enum": "correct"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">Opvolger(2,4)</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "4"
+    },
+    {
+      "command": "close-test",
+      "generated": "3",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "close-tab"
+    },
+    {
+      "command": "close-judgement"
+    }
+  ],
+  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+}

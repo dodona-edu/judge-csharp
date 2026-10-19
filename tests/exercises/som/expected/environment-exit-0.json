@@ -1,0 +1,26 @@
+{
+  "exit_code": 0,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "SomTests"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">BeideNegatief</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "close-judgement"
+    }
+  ],
+  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+}

@@ -1,0 +1,111 @@
+{
+  "exit_code": 0,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "SomTests"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">BeideNegatief</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "-7"
+    },
+    {
+      "command": "close-test",
+      "generated": "-7",
+      "status": {
+        "enum": "correct"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">NulEnNegatief</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "0"
+    },
+    {
+      "command": "close-test",
+      "generated": "0",
+      "status": {
+        "enum": "correct"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "-1"
+    },
+    {
+      "command": "close-test",
+      "generated": "-1",
+      "status": {
+        "enum": "correct"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">PositieveGetallen</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "5"
+    },
+    {
+      "command": "close-test",
+      "generated": "5",
+      "status": {
+        "enum": "correct"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "close-tab"
+    },
+    {
+      "command": "close-judgement"
+    }
+  ],
+  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+}

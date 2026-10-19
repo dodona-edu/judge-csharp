@@ -1,0 +1,55 @@
+name: E2E
+
+on:
+  workflow_call:
+    inputs:
+      image:
+        description: Judge image to run the suite in
+        type: string
+        default: ghcr.io/dodona-edu/dodona-csharp:latest
+      ref:
+        description: judge-csharp ref to test
+        type: string
+        default: master
+  workflow_dispatch:
+    inputs:
+      image:
+        description: Judge image to run the suite in
+        type: string
+        default: ghcr.io/dodona-edu/dodona-csharp:latest
+      ref:
+        description: judge-csharp ref to test
+        type: string
+        default: master
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          repository: dodona-edu/judge-csharp
+          ref: ${{ inputs.ref }}
+          persist-credentials: false
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Pulled up front: a pull inside the first case would land in its captured stderr.
+      - name: Pull the image
+        run: docker pull --quiet "$IMAGE"
+        env:
+          IMAGE: ${{ inputs.image }}
+
+      - name: Run tests
+        run: tests/run-exercises "$IMAGE"
+        env:
+          IMAGE: ${{ inputs.image }}

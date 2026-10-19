@@ -1,0 +1,121 @@
+#!/usr/bin/env bash
+# Usage: tests/run-exercises <image> [name filter]
+# Runs this judge in the image the way Dodona's submission runner does, once per
+# exercises/<exercise>/submissions/<case>.cs, and diffs the result with expected/<case>.json.
+# UPDATE_EXPECTED=1 rewrites the expected files; DOCKER_RUN_ARGS adds `docker run` arguments, e.g.
+# DOCKER_RUN_ARGS="--platform linux/amd64 -e MONO_ENV_OPTIONS=--interpreter" on an arm64 host.
+set -euo pipefail
+
+if [ $# -lt 1 ] || [ $# -gt 2 ]; then
+  echo "Usage: $0 <image> [name filter]" >&2
+  exit 2
+fi
+
+image=$1
+filter=${2:-}
+here=$(cd "$(dirname "$0")" && pwd)
+judge=$(cd "$here/.." && pwd)
+judge_timeout=300
+read -r -a extra_args <<< "${DOCKER_RUN_ARGS:-}"
+
+# Rewritten in the raw output, because the expected files must match mono's JIT and its interpreter.
+normalisations=(
+  # mktemp directories made by the judge's run script
+  -e 's|/tmp/tmp\.[A-Za-z0-9]+|/tmp/TMP|g'
+  # mono's per-frame noise: IL offsets and image hashes
+  -e 's/ <0x[0-9a-f]+ \+ 0x[0-9a-f]+> in <[0-9a-f]+>:0//g'
+  -e 's/ \[0x[0-9a-f]+\] in <[0-9a-f]+>:0//g'
+  -e 's/ in <filename unknown>:0//g'
+  -e 's/<filename unknown>:0//g'
+  # the JIT's NullReferenceException message has no trailing period, the interpreter's has
+  -e 's/(Object reference not set to an instance of an object)\./\1/g'
+)
+
+docker_run() {
+  if command -v timeout > /dev/null; then
+    timeout --kill-after=10 "$judge_timeout" docker run "$@"
+  else
+    docker run "$@"
+  fi
+}
+
+run_case() { # $1 = exercise dir, $2 = case name, $3 = file to write the result to
+  local exercise=$1 case=$2 result=$3
+  local tmp root exit_code output_key
+
+  tmp=$(mktemp -d)
+  root="/mnt/$(basename "$tmp")"
+  mkdir -p "$tmp/submission" "$tmp/workdir"
+  mkdir "$tmp/judge"
+  tar -C "$judge" --exclude=./.git --exclude=./.github --exclude=./.claude --exclude=./tests -cf - . | tar -C "$tmp/judge" -xf -
+  cp -R "$exercise/evaluation" "$tmp/resources"
+  cp "$exercise/submissions/$case.cs" "$tmp/submission/source"
+  # The container's runner user has another uid than the host user.
+  chmod -R a+rX "$tmp"
+  chmod 777 "$tmp/workdir"
+
+  exit_code=0
+  jq -n --arg root "$root" '
+    {memory_limit: 256000000, time_limit: 60, network_enabled: false,
+     programming_language: "csharp", natural_language: "nl",
+     resources: "\($root)/resources", source: "\($root)/submission/source",
+     judge: "\($root)/judge", workdir: "/home/runner/workdir"}' \
+    | docker_run --rm -i \
+      ${extra_args[@]+"${extra_args[@]}"} \
+      --memory 256000000 \
+      --pids-limit 256 \
+      --network none \
+      -v "$tmp:$root" \
+      -v "$tmp/workdir:/home/runner/workdir" \
+      "$image" /main.sh "$root/judge/run" \
+      > "$tmp/stdout" 2> "$tmp/stderr" || exit_code=$?
+
+  # Stack frames differ between the JIT and the interpreter, so only the exception lines stay.
+  sed -E -e "s|$root|/mnt/SANDBOX|g" "${normalisations[@]}" "$tmp/stdout" > "$tmp/stdout.norm"
+  sed -E -e "s|$root|/mnt/SANDBOX|g" "${normalisations[@]}" -e '/^[[:space:]]*at /d' "$tmp/stderr" > "$tmp/stderr.norm"
+
+  jq -Rs . < "$tmp/stderr.norm" > "$tmp/stderr.json"
+  output_key=feedback
+  if ! jq -s . < "$tmp/stdout.norm" > "$tmp/output.json" 2> /dev/null; then
+    output_key=raw_output
+    jq -Rs . < "$tmp/stdout.norm" > "$tmp/output.json"
+  fi
+  jq -S -n --argjson exit_code "$exit_code" --arg key "$output_key" \
+    --slurpfile stderr "$tmp/stderr.json" --slurpfile output "$tmp/output.json" \
+    '{exit_code: $exit_code, stderr: $stderr[0], ($key): $output[0]}' > "$result"
+  rm -rf "$tmp" 2> /dev/null || true
+}
+
+passed=0
+failed=0
+updated=0
+for submission in "$here"/exercises/*/submissions/*.cs; do
+  [ -e "$submission" ] || continue
+  exercise=$(dirname "$(dirname "$submission")")
+  case=$(basename "$submission" .cs)
+  name="$(basename "$exercise")/$case"
+  [[ "$name" == *"$filter"* ]] || continue
+
+  expected="$exercise/expected/$case.json"
+  actual=$(mktemp)
+  run_case "$exercise" "$case" "$actual"
+  if [ "${UPDATE_EXPECTED:-}" = 1 ]; then
+    mkdir -p "$(dirname "$expected")"
+    cat "$actual" > "$expected"
+    echo "updated $name"
+    updated=$((updated + 1))
+  elif [ ! -f "$expected" ]; then
+    echo "FAIL $name: no expected output, run with UPDATE_EXPECTED=1 to create it"
+    failed=$((failed + 1))
+  elif diff -u --label "${expected#"$here/"}" --label actual "$expected" "$actual"; then
+    echo "ok   $name"
+    passed=$((passed + 1))
+  else
+    echo "FAIL $name"
+    failed=$((failed + 1))
+  fi
+  rm -f "$actual"
+done
+
+echo "$passed passed, $failed failed, $updated updated"
+[ "$failed" -eq 0 ]

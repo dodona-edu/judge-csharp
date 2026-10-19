@@ -1,0 +1,103 @@
+{
+  "exit_code": 0,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "Tests"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">AreEqualMetBericht</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "3"
+    },
+    {
+      "command": "append-message",
+      "message": {
+        "description": "de som klopt niet",
+        "format": "plain"
+      }
+    },
+    {
+      "command": "close-test",
+      "generated": "2",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">FailMetBericht</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": ""
+    },
+    {
+      "command": "append-message",
+      "message": {
+        "description": "niet gelukt",
+        "format": "plain"
+      }
+    },
+    {
+      "command": "close-test",
+      "generated": "",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">IsTrueZonderBericht</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "close-tab"
+    },
+    {
+      "command": "close-judgement"
+    }
+  ],
+  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+}

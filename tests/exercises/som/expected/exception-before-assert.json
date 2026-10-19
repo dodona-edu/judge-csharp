@@ -1,0 +1,109 @@
+{
+  "exit_code": 0,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "SomTests"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">BeideNegatief</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "append-message",
+      "message": {
+        "description": "System.InvalidOperationException : kan niet optellen",
+        "format": "plain"
+      }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "runtime error"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">NulEnNegatief</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "append-message",
+      "message": {
+        "description": "System.InvalidOperationException : kan niet optellen",
+        "format": "plain"
+      }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "runtime error"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">PositieveGetallen</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "append-message",
+      "message": {
+        "description": "System.InvalidOperationException : kan niet optellen",
+        "format": "plain"
+      }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "runtime error"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "close-tab"
+    },
+    {
+      "command": "close-judgement"
+    }
+  ],
+  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+}

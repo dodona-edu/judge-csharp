@@ -1,0 +1,14 @@
+name: Integration test
+
+on:
+  push:
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  integration-test:
+    uses: ./.github/workflows/e2e.yml
+    with:
+      ref: ${{ github.sha }}
