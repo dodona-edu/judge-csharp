@@ -1,5 +1,3 @@
-using System.Linq;
-using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
 namespace judge_csharp.Tests
@@ -84,58 +82,135 @@ namespace judge_csharp.Tests
         }
 
         [Test]
-        public void FailedAssertionWithoutMessageIsNotAccepted()
+        public void FailedAssertionWithoutMessage()
         {
-            Assert.That(Fixtures.Handle("assert-message-is-true"), Does.Contain("""{"command":"close-testcase","accepted":false}"""));
+            Assert.That(Fixtures.Handle("assert-message-is-true"), Is.EqualTo(new[]
+            {
+                """{"command":"start-context"}""",
+                """{"command":"start-testcase","description":{"format":"html","description":"<span class=\"code\">IsTrueZonderBericht</span>"}}""",
+                """{"command":"escalate-status","status":{"enum":"wrong"}}""",
+                """{"command":"close-testcase","accepted":false}""",
+                """{"command":"close-context"}""",
+            }));
         }
 
         [Test]
-        public void ErrorAssertionIsHandled()
+        public void ErrorAfterPassedAssertion()
         {
-            KnownBug.Expect("assertion result \"Error\" crashes the judge", () => AssertCompletes("exception-after-assert"));
+            Assert.That(Fixtures.Handle("exception-after-assert"), Is.EqualTo(new[]
+            {
+                """{"command":"start-context"}""",
+                """{"command":"start-testcase","description":{"format":"html","description":"<span class=\"code\">NulEnNegatief</span>"}}""",
+                """{"command":"start-test","expected":"0"}""",
+                """{"command":"close-test","status":{"enum":"correct"},"generated":"0"}""",
+                """{"command":"append-message","message":{"format":"plain","description":"System.ArgumentException : b mag niet negatief zijn"}}""",
+                """{"command":"escalate-status","status":{"enum":"runtime error"}}""",
+                """{"command":"close-testcase","accepted":false}""",
+                """{"command":"close-context"}""",
+            }));
         }
 
         [Test]
-        public void WarningAssertionIsHandled()
+        public void WarningAssertion()
         {
-            KnownBug.Expect("assertion result \"Warning\" crashes the judge", () => AssertCompletes("assert-warn", wholeRun: true));
+            Assert.That(Fixtures.Handle("assert-warn"), Is.EqualTo(new[]
+            {
+                """{"command":"start-judgement"}""",
+                """{"command":"start-tab","title":"Tests"}""",
+                """{"command":"start-context"}""",
+                """{"command":"start-testcase","description":{"format":"html","description":"<span class=\"code\">Waarschuwing</span>"}}""",
+                """{"command":"append-message","message":{"format":"plain","description":"opgepast"}}""",
+                """{"command":"start-test","expected":"2"}""",
+                """{"command":"close-test","status":{"enum":"correct"},"generated":"2"}""",
+                """{"command":"close-testcase"}""",
+                """{"command":"close-context"}""",
+                """{"command":"close-tab"}""",
+                """{"command":"close-judgement"}""",
+            }));
         }
 
         [Test]
-        public void AssertPassIsHandled()
+        public void AssertPass()
         {
-            KnownBug.Expect("a passed test-case without assertions crashes the judge (Assert.Pass)", () => AssertCompletes("assert-pass", wholeRun: true));
+            Assert.That(Fixtures.Handle("assert-pass"), Is.EqualTo(new[]
+            {
+                """{"command":"start-judgement"}""",
+                """{"command":"start-tab","title":"Tests"}""",
+                """{"command":"start-context"}""",
+                """{"command":"start-testcase","description":{"format":"html","description":"<span class=\"code\">Geslaagd</span>"}}""",
+                """{"command":"close-testcase","accepted":true}""",
+                """{"command":"close-context"}""",
+                """{"command":"close-tab"}""",
+                """{"command":"close-judgement"}""",
+            }));
         }
 
         [Test]
-        public void AssertIgnoreIsHandled()
+        public void TestWithoutAssertions()
         {
-            KnownBug.Expect("a skipped test-case without assertions crashes the judge (Assert.Ignore)", () => AssertCompletes("assert-ignore", wholeRun: true));
+            Assert.That(Fixtures.Handle("no-assertions"), Is.EqualTo(new[]
+            {
+                """{"command":"start-judgement"}""",
+                """{"command":"start-tab","title":"Tests"}""",
+                """{"command":"start-context"}""",
+                """{"command":"start-testcase","description":{"format":"html","description":"<span class=\"code\">ZonderAsserts</span>"}}""",
+                """{"command":"close-testcase","accepted":true}""",
+                """{"command":"close-context"}""",
+                """{"command":"close-tab"}""",
+                """{"command":"close-judgement"}""",
+            }));
         }
 
         [Test]
-        public void AssertInconclusiveIsHandled()
+        public void AssertIgnoreInEnglish()
         {
-            KnownBug.Expect("an inconclusive test-case without assertions crashes the judge (Assert.Inconclusive)", () => AssertCompletes("assert-inconclusive", wholeRun: true));
+            Assert.That(Fixtures.Handle("assert-ignore", "en"), Is.EqualTo(new[]
+            {
+                """{"command":"start-judgement"}""",
+                """{"command":"start-tab","title":"Tests"}""",
+                """{"command":"start-context"}""",
+                """{"command":"start-testcase","description":{"format":"html","description":"<span class=\"code\">Genegeerd</span>"}}""",
+                """{"command":"append-message","message":{"format":"plain","description":"Test skipped"}}""",
+                """{"command":"close-testcase","accepted":true}""",
+                """{"command":"close-context"}""",
+                """{"command":"close-tab"}""",
+                """{"command":"close-judgement"}""",
+            }));
         }
 
         [Test]
-        public void TestWithoutAssertionsIsHandled()
+        public void AssertIgnoreInDutch()
         {
-            KnownBug.Expect("a passed test-case without assertions crashes the judge (no Assert call)", () => AssertCompletes("no-assertions", wholeRun: true));
+            Assert.That(Fixtures.Handle("assert-ignore", "nl"), Is.EqualTo(new[]
+            {
+                """{"command":"start-judgement"}""",
+                """{"command":"start-tab","title":"Tests"}""",
+                """{"command":"start-context"}""",
+                """{"command":"start-testcase","description":{"format":"html","description":"<span class=\"code\">Genegeerd</span>"}}""",
+                """{"command":"append-message","message":{"format":"plain","description":"Test overgeslagen"}}""",
+                """{"command":"close-testcase","accepted":true}""",
+                """{"command":"close-context"}""",
+                """{"command":"close-tab"}""",
+                """{"command":"close-judgement"}""",
+            }));
         }
 
-        // Whatever the final mapping is: no exception, a well-formed close-testcase and, for a whole run, a close-judgement.
-        private static void AssertCompletes(string fixture, bool wholeRun = false)
+        [Test]
+        public void AssertInconclusive()
         {
-            string[] lines = Fixtures.Handle(fixture);
-            var commands = lines.Select(line => (string)JObject.Parse(line)["command"]).ToList();
-
-            Assert.That(commands, Contains.Item("close-testcase"));
-            JToken accepted = lines.Select(JObject.Parse).First(line => (string)line["command"] == "close-testcase")["accepted"];
-            Assert.That(accepted == null || accepted.Type == JTokenType.Boolean, "accepted must be absent or a boolean");
-            if (wholeRun)
-                Assert.That(commands.Last(), Is.EqualTo("close-judgement"));
+            Assert.That(Fixtures.Handle("assert-inconclusive"), Is.EqualTo(new[]
+            {
+                """{"command":"start-judgement"}""",
+                """{"command":"start-tab","title":"Tests"}""",
+                """{"command":"start-context"}""",
+                """{"command":"start-testcase","description":{"format":"html","description":"<span class=\"code\">Onbeslist</span>"}}""",
+                """{"command":"append-message","message":{"format":"plain","description":"onduidelijk"}}""",
+                """{"command":"escalate-status","status":{"enum":"wrong"}}""",
+                """{"command":"close-testcase","accepted":false}""",
+                """{"command":"close-context"}""",
+                """{"command":"close-tab"}""",
+                """{"command":"close-judgement"}""",
+            }));
         }
     }
 }

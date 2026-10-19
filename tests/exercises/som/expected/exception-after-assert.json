@@ -1,5 +1,5 @@
 {
-  "exit_code": 1,
+  "exit_code": 0,
   "feedback": [
     {
       "command": "start-judgement"
@@ -60,16 +60,58 @@
       }
     },
     {
-      "command": "start-test",
-      "expected": ""
-    },
-    {
       "command": "append-message",
       "message": {
         "description": "System.ArgumentException : b mag niet negatief zijn",
         "format": "plain"
       }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "runtime error"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">PositieveGetallen</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "5"
+    },
+    {
+      "command": "close-test",
+      "generated": "5",
+      "status": {
+        "enum": "correct"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "close-tab"
+    },
+    {
+      "command": "close-judgement"
     }
   ],
-  "stderr": "\nUnhandled Exception:\nSystem.Collections.Generic.KeyNotFoundException: The given key 'Error' was not present in the dictionary.\n[ERROR] FATAL UNHANDLED EXCEPTION: System.Collections.Generic.KeyNotFoundException: The given key 'Error' was not present in the dictionary.\n/main.sh: 1: /main.sh: pkill: not found\n"
+  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
 }

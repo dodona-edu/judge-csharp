@@ -7,6 +7,7 @@ cat > "$config"
 resources="$(jshon -e 'resources' -u < "$config")"
 judge="$(jshon -e 'judge' -u < "$config")"
 workdir="$(jshon -e 'workdir' -u < "$config")"
+language="$(jshon -Q -e 'natural_language' -u < "$config" || echo en)"
 
 # Prepare to compile
 compiledir=$(mktemp -d)
@@ -32,5 +33,5 @@ cp $judge/lib/nunit.framework.dll $workdir/nunit.framework.dll
 # Execute the tests
 cd $workdir
 rm -r $compiledir
-mono $judge/bin/judge-csharp.exe testproject.dll
+mono $judge/bin/judge-csharp.exe testproject.dll "$language"
 

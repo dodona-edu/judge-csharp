@@ -14,12 +14,14 @@ namespace judge_csharp
         readonly BlockingCollection<String> Eventqueue;
         readonly MyEventListener NunitListener;
         readonly string TestAssemblyPath;
+        readonly string Language;
 
-        public NUnitJson(string testAssemblyPath)
+        public NUnitJson(string testAssemblyPath, string language)
         {
             Eventqueue = new BlockingCollection<string>(new ConcurrentQueue<string>());
             NunitListener = new MyEventListener(Eventqueue);
             TestAssemblyPath = testAssemblyPath;
+            Language = language;
         }
 
         public void Start()
@@ -30,7 +32,7 @@ namespace judge_csharp
 
             /* for some reason stdout gets changed while running NUnit tests */
             TextWriter outputChannel = Console.Out;
-            new QueueListener(Eventqueue, new OutputHandler(outputChannel)).StartListening();
+            new QueueListener(Eventqueue, new OutputHandler(outputChannel, Language)).StartListening();
         }
 
         public void RunTests()
@@ -45,7 +47,8 @@ namespace judge_csharp
         public static void Main(string[] args)
         {
             string testassemblyPath = args[0];
-            new NUnitJson(testassemblyPath).Start();
+            string language = args.Length > 1 ? args[1] : "en";
+            new NUnitJson(testassemblyPath, language).Start();
         }
     }
 }

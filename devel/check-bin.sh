@@ -3,8 +3,7 @@
 # Rebuilds src/judge-csharp with devel/build.sh and compares every file of the build with the same file in bin/.
 set -euo pipefail
 
-# The deployed judge was built from older source; empty this list once bin/ is rebuilt from src/.
-allowed_to_differ=(judge-csharp.exe judge-csharp.exe.config judge-csharp.pdb)
+allowed_to_differ=()
 
 root=$(cd "$(dirname "$0")/.." && pwd)
 build=$(mktemp -d)
