@@ -19,8 +19,32 @@
       }
     },
     {
+      "command": "append-message",
+      "message": {
+        "description": "De testen stopten voortijdig: het testproces eindigde met exitcode 0.",
+        "format": "plain"
+      }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "runtime error"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "close-tab"
+    },
+    {
+      "accepted": false,
       "command": "close-judgement"
     }
   ],
-  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+  "stderr": ""
 }

@@ -25,7 +25,7 @@
     {
       "command": "append-message",
       "message": {
-        "description": "de som van {0} en {1} klopt niet",
+        "description": "de som van 1 en 2 klopt niet",
         "format": "plain"
       }
     },
@@ -59,7 +59,7 @@
     {
       "command": "append-message",
       "message": {
-        "description": "verwacht {0}",
+        "description": "verwacht 3",
         "format": "plain"
       }
     },
@@ -83,5 +83,5 @@
       "command": "close-judgement"
     }
   ],
-  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+  "stderr": ""
 }

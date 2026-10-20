@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <RootNamespace>judge_csharp.Tests</RootNamespace>
     <IsPackable>false</IsPackable>
     <JudgeSource Condition="'$(JudgeSource)' == ''">../judge-csharp</JudgeSource>
@@ -13,8 +13,7 @@
     <Content Include="fixtures\*.xml" Link="fixtures\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <ItemGroup>
-    <!-- Microsoft.NET.Test.Sdk 17.8.0 needs Newtonsoft.Json 13 or newer, the judge pins 12.0.2. -->
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="NUnit" Version="3.14.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />

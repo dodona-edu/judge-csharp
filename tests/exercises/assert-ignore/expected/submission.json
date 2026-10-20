@@ -21,7 +21,7 @@
     {
       "command": "append-message",
       "message": {
-        "description": "Test overgeslagen",
+        "description": "overgeslagen",
         "format": "plain"
       }
     },
@@ -39,5 +39,5 @@
       "command": "close-judgement"
     }
   ],
-  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+  "stderr": ""
 }
