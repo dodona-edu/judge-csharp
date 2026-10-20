@@ -1,0 +1,211 @@
+{
+  "exit_code": 0,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "Tests"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">Aantal</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "property Count equal to 3"
+    },
+    {
+      "command": "close-test",
+      "generated": "2",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">AantalKlopt</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">Bevat</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "String containing \"x\""
+    },
+    {
+      "command": "close-test",
+      "generated": "\"abc\"",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">GooitIetsAnders</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "<System.ArgumentException>"
+    },
+    {
+      "command": "close-test",
+      "generated": "<System.InvalidOperationException: kapot\n   at Oplossing.Kapot()\n   at Tests.<>c.<GooitIetsAnders>b__5_0()\n   at NUnit.Framework.Assert.Throws(IResolveConstraint expression, TestDelegate code, String message, Object[] args)>",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "command": "append-message",
+      "message": {
+        "description": "System.InvalidCastException : Unable to cast object of type 'System.InvalidOperationException' to type 'System.ArgumentException'.",
+        "format": "plain"
+      }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "runtime error"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">GooitNiet</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "<System.ArgumentException>"
+    },
+    {
+      "command": "close-test",
+      "generated": "null",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">Groter</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "greater than 5"
+    },
+    {
+      "command": "close-test",
+      "generated": "2",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">Waar</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "True"
+    },
+    {
+      "command": "close-test",
+      "generated": "False",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "close-tab"
+    },
+    {
+      "command": "close-judgement"
+    }
+  ],
+  "stderr": ""
+}

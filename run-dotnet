@@ -1,0 +1,43 @@
+#!/bin/bash
+# The .NET judge that `run` hands over to when the image has dotnet: compiles against lib-dotnet/ and runs bin-dotnet/.
+
+# parsing configuration
+config="$(mktemp)"
+cat > "$config"
+
+resources="$(jshon -e 'resources' -u < "$config")"
+judge="$(jshon -e 'judge' -u < "$config")"
+workdir="$(jshon -e 'workdir' -u < "$config")"
+language="$(jshon -Q -e 'natural_language' -u < "$config" || echo en)"
+
+# The image's SDK provides the compiler and the reference assemblies.
+dotnet_root="$(dirname "$(readlink -f "$(command -v dotnet)")")"
+csc=("$dotnet_root"/sdk/*/Roslyn/bincore/csc.dll)
+references=("$dotnet_root"/packs/Microsoft.NETCore.App.Ref/*/ref/net10.0/*.dll "$judge"/lib-dotnet/*.dll)
+
+# Prepare to compile
+compiledir=$(mktemp -d)
+cd "$compiledir" || exit 1
+cp -r "$resources"/* .
+cat "$(jshon -e 'source' -u < "$config")" > "solution.cs"
+
+# Compiling solution with tests
+compileresult="$(mktemp)"
+# -parallel- because a parallel build reports its diagnostics in a varying order.
+# shellcheck disable=SC2035 # csc names the files in its messages as given, like the mono judge's *.cs
+if ! LANG=C.UTF-8 dotnet "${csc[0]}" -noconfig -nostdlib -parallel- -langversion:latest -target:library \
+    "${references[@]/#/-reference:}" -out:"$workdir/testproject.dll" *.cs > "$compileresult"; then
+    jshon -s "start-judgement"  -i "command" <<< "{}"
+    message="<pre>$(tail -n +4 "$compileresult")</pre>"
+    jshon -s "append-message" -i "command" -n {} -s "html" -i "format" -s "$message" -i "description" -i "message"<<< "{}"
+    jshon -s "close-judgement" -i "command" -n false -i "accepted" -n {} -s "compilation error" -i "enum" -i "status" <<< "{}"
+    exit 0
+fi
+
+# Copy testing framework
+cp "$judge"/lib-dotnet/*.dll "$workdir"/
+
+# Execute the tests
+cd "$workdir" || exit 1
+rm -r "$compiledir"
+dotnet "$judge/bin-dotnet/judge-csharp.dll" testproject.dll "$language"

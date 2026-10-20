@@ -1,0 +1,103 @@
+{
+  "exit_code": 0,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "Tests"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">Daarna</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "2"
+    },
+    {
+      "command": "close-test",
+      "generated": "2",
+      "status": {
+        "enum": "correct"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">Oneindig</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "append-message",
+      "message": {
+        "description": "Test exceeded Timeout value of 500ms",
+        "format": "plain"
+      }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "runtime error"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">OpTijd</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "2"
+    },
+    {
+      "command": "close-test",
+      "generated": "2",
+      "status": {
+        "enum": "correct"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "close-tab"
+    },
+    {
+      "command": "close-judgement"
+    }
+  ],
+  "stderr": ""
+}
