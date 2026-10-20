@@ -1,0 +1,186 @@
+{
+  "exit_code": 0,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "Tests"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">Aantal</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">AantalKlopt</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">Bevat</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">GooitIetsAnders</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "command": "append-message",
+      "message": {
+        "description": "System.InvalidCastException : Specified cast is not valid.",
+        "format": "plain"
+      }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "runtime error"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">GooitNiet</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">Groter</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">Waar</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "close-tab"
+    },
+    {
+      "command": "close-judgement"
+    }
+  ],
+  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+}

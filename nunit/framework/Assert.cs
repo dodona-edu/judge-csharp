@@ -386,7 +386,16 @@ namespace NUnit.Framework
 
         private static void ReportFailure(ConstraintResult result, string message, params object[] args)
         {
-            Report(AssertionStatus.Failed, result.ActualValue, result.ExpectedValue, message, args);
+            if (result.ExpectedValue != null)
+            {
+                Report(AssertionStatus.Failed, result.ActualValue, result.ExpectedValue, message, args);
+                return;
+            }
+
+            // Only EqualConstraint sets ExpectedValue: describe the others the way NUnit's failure message does.
+            var actual = new TextMessageWriter();
+            result.WriteActualValueTo(actual);
+            Report(AssertionStatus.Failed, actual.ToString(), result.Description, message, args);
         }
 
         private static void ReportFailure(string message)
