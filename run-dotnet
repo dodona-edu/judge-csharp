@@ -23,8 +23,9 @@ cat "$(jshon -e 'source' -u < "$config")" > "solution.cs"
 
 # Compiling solution with tests
 compileresult="$(mktemp)"
+# -parallel- because a parallel build reports its diagnostics in a varying order.
 # shellcheck disable=SC2035 # csc names the files in its messages as given, like the mono judge's *.cs
-if ! LANG=C.UTF-8 dotnet "${csc[0]}" -noconfig -nostdlib -langversion:latest -target:library \
+if ! LANG=C.UTF-8 dotnet "${csc[0]}" -noconfig -nostdlib -parallel- -langversion:latest -target:library \
     "${references[@]/#/-reference:}" -out:"$workdir/testproject.dll" *.cs > "$compileresult"; then
     jshon -s "start-judgement"  -i "command" <<< "{}"
     message="<pre>$(tail -n +4 "$compileresult")</pre>"
