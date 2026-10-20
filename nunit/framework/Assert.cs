@@ -376,6 +376,8 @@ namespace NUnit.Framework
 
         private static TestResult Report(AssertionStatus status, object actual, object expected, string message, params object[] args)
         {
+            if (message != null && args != null && args.Length > 0)
+                message = string.Format(message, args);
             var result = TestExecutionContext.CurrentContext.CurrentResult;
             result.RecordAssertion(status, actual, expected, message, GetStackTrace());
             result.RecordTestCompletion();

@@ -412,7 +412,6 @@ namespace NUnit.Framework.Internal
                     break;
                 case TestStatus.Skipped:
                 case TestStatus.Passed:
-                    break;
                 case TestStatus.Inconclusive:
                 case TestStatus.Warning:
                     if (Message != null && Message.Trim().Length > 0)

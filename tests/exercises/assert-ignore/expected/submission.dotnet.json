@@ -1,0 +1,43 @@
+{
+  "exit_code": 0,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "Tests"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">Genegeerd</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "append-message",
+      "message": {
+        "description": "overgeslagen",
+        "format": "plain"
+      }
+    },
+    {
+      "accepted": true,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "close-tab"
+    },
+    {
+      "command": "close-judgement"
+    }
+  ],
+  "stderr": ""
+}
