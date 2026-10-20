@@ -87,6 +87,13 @@
       }
     },
     {
+      "command": "escalate-status",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "accepted": false,
       "command": "close-testcase"
     },
     {

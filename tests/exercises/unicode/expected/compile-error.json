@@ -1,0 +1,23 @@
+{
+  "exit_code": 0,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "append-message",
+      "message": {
+        "description": "<pre>solution.cs(5,18): error CS1002: ; expected\nsolution.cs(5,20): error CS1002: ; expected\nsolution.cs(5,20): error CS1056: Unexpected character '—'\nsolution.cs(5,22): error CS1056: Unexpected character '✓'</pre>",
+        "format": "html"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-judgement",
+      "status": {
+        "enum": "compilation error"
+      }
+    }
+  ],
+  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+}

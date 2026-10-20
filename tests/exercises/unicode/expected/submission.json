@@ -1,0 +1,80 @@
+{
+  "exit_code": 0,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "Tests"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">BerichtNietAscii</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "1"
+    },
+    {
+      "command": "append-message",
+      "message": {
+        "description": "de som klopt niet — ✓",
+        "format": "plain"
+      }
+    },
+    {
+      "command": "close-test",
+      "generated": "2",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">NietAscii</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "é ü — ✓"
+    },
+    {
+      "command": "close-test",
+      "generated": "é ü — ✓!",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "close-tab"
+    },
+    {
+      "command": "close-judgement"
+    }
+  ],
+  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+}

@@ -12,10 +12,12 @@ namespace judge_csharp.EventHandling
     {
         private readonly TextWriter OutputChannel;
         private readonly Dictionary<string, Status> resultmap;
+        private readonly string Language;
 
-        public OutputHandler(TextWriter outputChannel)
+        public OutputHandler(TextWriter outputChannel, string language = "en")
         {
             OutputChannel = outputChannel;
+            Language = language;
             resultmap = new Dictionary<string, Status>();
             resultmap.Add("Passed", Status.CORRECT);
             resultmap.Add("Failed", Status.WRONG);
@@ -54,12 +56,34 @@ namespace judge_csharp.EventHandling
                         OutputChannel.WriteLine(JSONGenerator.StartTestcase(node.SelectSingleNode("stdin").ChildNodes[0].Value.Trim()));
                     break;
                 case "test-case":
-                    if (node.SelectNodes("assertions").Count == 0) /* runtime error */
+                    if (node.SelectNodes("assertions").Count == 0 && node.SelectNodes("failure/message").Count != 0) /* runtime error */
                     {
                         string messagetext = node.SelectSingleNode("failure/message").ChildNodes[0].Value;
                         OutputChannel.WriteLine(JSONGenerator.AppendMessage(Format.PLAIN, messagetext));
                         OutputChannel.WriteLine(JSONGenerator.EscalateStatus(Status.RUNTIME_ERROR));
                         OutputChannel.WriteLine(JSONGenerator.CloseTestcase(false));
+                    }
+                    else if (node.SelectNodes("assertions").Count == 0)
+                    {
+                        string result = node.Attributes["result"].Value;
+                        string reason = "";
+                        if (node.SelectNodes("reason/message").Count != 0)
+                            reason = node.SelectSingleNode("reason/message").InnerText.Trim();
+
+                        if (result == "Skipped" && reason.Length == 0)
+                            reason = Language == "nl" ? "Test overgeslagen" : "Test skipped";
+                        if (reason.Length != 0)
+                            OutputChannel.WriteLine(JSONGenerator.AppendMessage(Format.PLAIN, reason));
+
+                        if (result == "Passed" || result == "Skipped")
+                        {
+                            OutputChannel.WriteLine(JSONGenerator.CloseTestcase(true));
+                        }
+                        else
+                        {
+                            OutputChannel.WriteLine(JSONGenerator.EscalateStatus(Status.WRONG));
+                            OutputChannel.WriteLine(JSONGenerator.CloseTestcase(false));
+                        }
                     }
                     else
                     {
@@ -79,15 +103,32 @@ namespace judge_csharp.EventHandling
                             if (assertion.SelectNodes("message").Count != 0)
                                 message = assertion.SelectSingleNode("message").ChildNodes[0].Value.Trim();
 
+                            if (testresult == "Error" || testresult == "Warning")
+                            {
+                                if (message.Length != 0)
+                                    OutputChannel.WriteLine(JSONGenerator.AppendMessage(Format.PLAIN, message));
+                                if (testresult == "Error")
+                                {
+                                    OutputChannel.WriteLine(JSONGenerator.EscalateStatus(Status.RUNTIME_ERROR));
+                                    accepted = false;
+                                }
+                                continue;
+                            }
+
+                            Status status;
+                            if (!resultmap.TryGetValue(testresult, out status))
+                                status = Status.WRONG;
+
                             if (generated != "" || expected != "" || message != "")
                             {
                                 OutputChannel.WriteLine(JSONGenerator.StartTest(expected));
                                 if (message.Length != 0)
                                     OutputChannel.WriteLine(JSONGenerator.AppendMessage(Format.PLAIN, message));
-                                OutputChannel.WriteLine(JSONGenerator.CloseTest(resultmap[testresult], generated));
+                                OutputChannel.WriteLine(JSONGenerator.CloseTest(status, generated));
                             }
-                            else if (resultmap[testresult] != Status.CORRECT)
+                            else if (status != Status.CORRECT)
                             {
+                                OutputChannel.WriteLine(JSONGenerator.EscalateStatus(Status.WRONG));
                                 accepted = false;
                             }
                         }

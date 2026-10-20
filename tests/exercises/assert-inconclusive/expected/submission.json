@@ -1,5 +1,5 @@
 {
-  "exit_code": 1,
+  "exit_code": 0,
   "feedback": [
     {
       "command": "start-judgement"
@@ -17,7 +17,33 @@
         "description": "<span class=\"code\">Onbeslist</span>",
         "format": "html"
       }
+    },
+    {
+      "command": "append-message",
+      "message": {
+        "description": "onduidelijk",
+        "format": "plain"
+      }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "close-tab"
+    },
+    {
+      "command": "close-judgement"
     }
   ],
-  "stderr": "\nUnhandled Exception:\nSystem.NullReferenceException: Object reference not set to an instance of an object\n[ERROR] FATAL UNHANDLED EXCEPTION: System.NullReferenceException: Object reference not set to an instance of an object\n/main.sh: 1: /main.sh: pkill: not found\n"
+  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
 }
