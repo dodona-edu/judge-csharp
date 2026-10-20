@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Usage: devel/check-bin.sh
-# Rebuilds both judges with devel/build.sh and compares every file of the build with the same file in bin/ and bin-dotnet/.
+# Rebuilds both judges with devel/build.sh and compares every file of the build with the same file in bin/, bin-dotnet/ and lib-dotnet/.
 set -euo pipefail
 
 allowed_to_differ=()
@@ -20,7 +20,7 @@ is_allowed() {
 }
 
 status=0
-for dir in bin bin-dotnet; do
+for dir in bin bin-dotnet lib-dotnet; do
   for file in "$build/$dir"/*; do
     name="$dir/$(basename "$file")"
     if [ ! -f "$root/$name" ]; then

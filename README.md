@@ -12,18 +12,19 @@ The .NET judge runs the tests in a child process, a second `dotnet bin-dotnet/ju
 The child drives the `nunit.framework.dll` next to the test assembly through NUnit's `FrameworkController` and sends its events to the judge over an anonymous pipe, so nothing student code writes to stdout can reach the judge's output (it ends up on stderr).
 When the child ends before the run is complete, the judge closes the levels it left open: exit code 137 (killed by the memory limit) gives "memory limit exceeded", any other end a runtime error with a message that names the exit code.
 
-`lib-dotnet/` holds the NUnit framework the tests compile against; it is not committed yet.
+`lib-dotnet/` holds the NUnit framework the tests compile against: the judge's NUnit 3.13 fork in `nunit/`, built for net10.0.
+It times out `[Timeout]` tests without `Thread.Abort`, which .NET does not support, so a timed-out test keeps running in the background until the run ends.
 The mono build goes once the image runs .NET 10.
 
 ## Source and binaries
 
-Dodona runs the committed `bin/` and `bin-dotnet/` directly. The source lives in `src/`, imported with its history from [dodona-edu/judge-csharp-source](https://github.com/dodona-edu/judge-csharp-source): `src/judge-csharp` is the mono judge, `src/judge-csharp-dotnet` the .NET judge, which links the mono judge's `OutputHandler`, `Json/`, `Feedback/` and `Util/`.
+Dodona runs the committed `bin/`, `bin-dotnet/` and `lib-dotnet/` directly. The source lives in `src/`, imported with its history from [dodona-edu/judge-csharp-source](https://github.com/dodona-edu/judge-csharp-source): `src/judge-csharp` is the mono judge, `src/judge-csharp-dotnet` the .NET judge, which links the mono judge's `OutputHandler`, `Json/`, `Feedback/` and `Util/`.
 The scripts in `devel/` need Docker and run the .NET SDK in pinned containers (8.0.426 for the mono judge, 10.0.402 for the .NET judge), so no local .NET install is needed.
 
-- `devel/build.sh [out dir]` rebuilds both judges reproducibly into `bin/` and `bin-dotnet/` of the out dir (default `build/`).
-- `devel/check-bin.sh` compares that rebuild with `bin/` and `bin-dotnet/` and fails when any file differs: every file must match.
+- `devel/build.sh [out dir]` rebuilds both judges and the NUnit fork reproducibly into `bin/`, `bin-dotnet/` and `lib-dotnet/` of the out dir (default `build/`).
+- `devel/check-bin.sh` compares that rebuild with `bin/`, `bin-dotnet/` and `lib-dotnet/` and fails when any file differs: every file must match.
 - `devel/test.sh` runs the unit tests in `src/judge-csharp.Tests` (mono judge) and `src/judge-csharp-dotnet.Tests` (.NET judge). A test wrapped in `KnownBug.Expect` asserts the intended behaviour of a known bug: it is skipped while the bug exists and fails once the bug is fixed, so the marker gets removed.
-- `devel/run-e2e.sh [image]` runs the golden suite below on a copy of this repository whose `bin/` and `bin-dotnet/` are a fresh rebuild.
+- `devel/run-e2e.sh [image]` runs the golden suite below on a copy of this repository whose `bin/`, `bin-dotnet/` and `lib-dotnet/` are a fresh rebuild.
 
 `devel/run-e2e.sh` honours `DOCKER_RUN_ARGS` like the suite itself, so on Apple Silicon use `DOCKER_RUN_ARGS="--platform linux/amd64 -e MONO_ENV_OPTIONS=--interpreter" devel/run-e2e.sh`.
 

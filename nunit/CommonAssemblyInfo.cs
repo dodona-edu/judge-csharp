@@ -34,6 +34,8 @@ using System.Reflection;
 #if DEBUG
 #if NET6_0
 [assembly: AssemblyConfiguration(".NET Framework 6 Debug")]
+#elif NET10_0
+[assembly: AssemblyConfiguration(".NET 10 Debug")]
 #elif NET45
 [assembly: AssemblyConfiguration(".NET Framework 4.5 Debug")]
 #elif NET40
@@ -54,6 +56,8 @@ using System.Reflection;
 #else
 #if NET6_0
 [assembly: AssemblyConfiguration(".NET Framework 6")]
+#elif NET10_0
+[assembly: AssemblyConfiguration(".NET 10")]
 #elif NET45
 [assembly: AssemblyConfiguration(".NET Framework 4.5")]
 #elif NET40

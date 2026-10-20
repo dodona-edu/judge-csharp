@@ -101,10 +101,7 @@ namespace NUnit.Framework.Internal.Commands
             {
                 if (!Task.Run(() => context.CurrentResult = innerCommand.Execute(context)).Wait(_timeout))
                 {
-                    context.CurrentResult.SetResult(new ResultState(
-                        TestStatus.Failed,
-                        $"Test exceeded Timeout value {_timeout}ms.",
-                        FailureSite.Test));
+                    context.CurrentResult.SetResult(ResultState.Failure, $"Test exceeded Timeout value of {_timeout}ms");
                 }
             }
             catch (Exception exception)
