@@ -96,8 +96,8 @@ namespace judge_csharp.EventHandling
                             string message = "";
                             if (assertion.SelectNodes("actual").Count != 0 && assertion.SelectNodes("expected").Count != 0)
                             {
-                                expected = assertion.SelectSingleNode("expected").ChildNodes[0].Value.Trim();
-                                generated = assertion.SelectSingleNode("actual").ChildNodes[0].Value.Trim();
+                                expected = WithoutTrailingNewline(assertion.SelectSingleNode("expected").ChildNodes[0].Value);
+                                generated = WithoutTrailingNewline(assertion.SelectSingleNode("actual").ChildNodes[0].Value);
                             }
 
                             if (assertion.SelectNodes("message").Count != 0)
@@ -146,6 +146,16 @@ namespace judge_csharp.EventHandling
                     break;
             }
             return proceed;
+        }
+
+        // Like TESTed, at most one line ending at the very end is ignored; all other whitespace is shown.
+        private static string WithoutTrailingNewline(string text)
+        {
+            if (text.EndsWith("\r\n"))
+                return text.Substring(0, text.Length - 2);
+            if (text.EndsWith("\n"))
+                return text.Substring(0, text.Length - 1);
+            return text;
         }
     }
 }

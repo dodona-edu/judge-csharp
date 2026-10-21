@@ -1,0 +1,46 @@
+{
+  "exit_code": 0,
+  "feedback": [
+    {
+      "command": "start-judgement"
+    },
+    {
+      "command": "start-tab",
+      "title": "WhitespaceTests"
+    },
+    {
+      "command": "start-context"
+    },
+    {
+      "command": "start-testcase",
+      "description": {
+        "description": "<span class=\"code\">LegeRegel</span>",
+        "format": "html"
+      }
+    },
+    {
+      "command": "start-test",
+      "expected": "    "
+    },
+    {
+      "command": "close-test",
+      "generated": "",
+      "status": {
+        "enum": "wrong"
+      }
+    },
+    {
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "close-tab"
+    },
+    {
+      "command": "close-judgement"
+    }
+  ],
+  "stderr": ""
+}
