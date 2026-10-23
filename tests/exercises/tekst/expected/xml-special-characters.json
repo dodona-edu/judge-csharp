@@ -58,5 +58,5 @@
       "command": "close-judgement"
     }
   ],
-  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+  "stderr": ""
 }

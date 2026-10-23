@@ -1,5 +1,5 @@
 {
-  "exit_code": 255,
+  "exit_code": 0,
   "feedback": [
     {
       "command": "start-judgement"
@@ -17,7 +17,27 @@
         "description": "<span class=\"code\">BeideNegatief</span>",
         "format": "html"
       }
+    },
+    {
+      "command": "escalate-status",
+      "status": {
+        "enum": "memory limit exceeded"
+      }
+    },
+    {
+      "accepted": false,
+      "command": "close-testcase"
+    },
+    {
+      "command": "close-context"
+    },
+    {
+      "command": "close-tab"
+    },
+    {
+      "accepted": false,
+      "command": "close-judgement"
     }
   ],
-  "stderr": "\nUnhandled Exception:\nNUnit.Engine.NUnitEngineException: Remote test agent exited with non-zero exit code 137\n[ERROR] FATAL UNHANDLED EXCEPTION: NUnit.Engine.NUnitEngineException: Remote test agent exited with non-zero exit code 137\n/main.sh: 1: /main.sh: pkill: not found\n"
+  "stderr": ""
 }

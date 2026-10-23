@@ -21,7 +21,7 @@
     {
       "command": "append-message",
       "message": {
-        "description": "System.ArgumentNullException : Value cannot be null.\nParameter name: s",
+        "description": "System.ArgumentNullException : Value cannot be null. (Parameter 's')",
         "format": "plain"
       }
     },
@@ -51,7 +51,7 @@
     {
       "command": "append-message",
       "message": {
-        "description": "System.ArgumentNullException : Value cannot be null.\nParameter name: s",
+        "description": "System.ArgumentNullException : Value cannot be null. (Parameter 's')",
         "format": "plain"
       }
     },
@@ -81,7 +81,7 @@
     {
       "command": "append-message",
       "message": {
-        "description": "System.ArgumentNullException : Value cannot be null.\nParameter name: s",
+        "description": "System.ArgumentNullException : Value cannot be null. (Parameter 's')",
         "format": "plain"
       }
     },
@@ -105,5 +105,5 @@
       "command": "close-judgement"
     }
   ],
-  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+  "stderr": ""
 }

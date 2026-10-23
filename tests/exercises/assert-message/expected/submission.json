@@ -87,13 +87,17 @@
       }
     },
     {
-      "command": "escalate-status",
+      "command": "start-test",
+      "expected": "True"
+    },
+    {
+      "command": "close-test",
+      "generated": "False",
       "status": {
         "enum": "wrong"
       }
     },
     {
-      "accepted": false,
       "command": "close-testcase"
     },
     {
@@ -106,5 +110,5 @@
       "command": "close-judgement"
     }
   ],
-  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+  "stderr": ""
 }

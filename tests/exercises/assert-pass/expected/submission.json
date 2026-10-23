@@ -19,6 +19,13 @@
       }
     },
     {
+      "command": "append-message",
+      "message": {
+        "description": "alles goed",
+        "format": "plain"
+      }
+    },
+    {
       "accepted": true,
       "command": "close-testcase"
     },
@@ -32,5 +39,5 @@
       "command": "close-judgement"
     }
   ],
-  "stderr": "/main.sh: 1: /main.sh: pkill: not found\n"
+  "stderr": ""
 }
