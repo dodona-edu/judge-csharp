@@ -18,9 +18,9 @@ namespace judge_csharp.Feedback
 
         public static Message Code(string content) => new Message(Format.CODE, content, Permission.STUDENT);
 
-        public static Message Staff(string content) => new Message(Format.PLAIN, content, Permission.STAFF);
+        public static Message Educator(string content) => new Message(Format.PLAIN, content, Permission.EDUCATOR);
 
-        public static Message InternalError(string content) => new Message(Format.CODE, content, Permission.STAFF);
+        public static Message InternalError(string content) => new Message(Format.CODE, content, Permission.EDUCATOR);
 
     }
 }
