@@ -4,7 +4,7 @@ namespace judge_csharp.Feedback
     public enum Permission
     {
         STUDENT, /* visible for everyone */
-        STAFF,   /* visible for staff members */
+        EDUCATOR, /* visible for educators */
         ZEUS    /* visible only for almighty Zeus */
     }
 }
