@@ -27,6 +27,6 @@ The scripts in `devel/` need Docker and run the .NET SDK in a pinned container (
 ## Tests
 
 The golden-file e2e suite runs this judge in the Dodona image once per `tests/exercises/*/submissions/*.cs` and diffs the result with the matching file in `expected/`.
-Run it with `tests/run-exercises ghcr.io/dodona-edu/dodona-csharp:latest`.
+Run it with `tests/run-exercises ghcr.io/dodona-edu/dodona-csharp:live`.
 Pass a second argument to only run the cases whose `exercise/case` name contains it.
 Set `UPDATE_EXPECTED=1` to rewrite the expected files instead of diffing.

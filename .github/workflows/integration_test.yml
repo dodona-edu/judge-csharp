@@ -11,4 +11,5 @@ jobs:
   integration-test:
     uses: ./.github/workflows/e2e.yml
     with:
+      image: ghcr.io/dodona-edu/dodona-csharp:live
       ref: ${{ github.sha }}
