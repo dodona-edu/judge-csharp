@@ -9,7 +9,7 @@ if [ $# -gt 1 ]; then
   exit 2
 fi
 
-image=${1:-ghcr.io/dodona-edu/dodona-csharp:latest}
+image=${1:-ghcr.io/dodona-edu/dodona-csharp:live}
 root=$(cd "$(dirname "$0")/.." && pwd)
 
 work=$(mktemp -d)
